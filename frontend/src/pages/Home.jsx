@@ -1,5 +1,16 @@
+import { useState } from "react";
+import Banner from "../components/Banner/Banner";
+
 function Home() {
-  return <div>Home</div>;
+  const [query, setQuery] = useState("");
+  const handleChange = (e) => {
+    setQuery(e.target.value);
+  };
+  return (
+    <div>
+      <Banner query={query} handleChange={handleChange} />
+    </div>
+  );
 }
 
 export default Home;
