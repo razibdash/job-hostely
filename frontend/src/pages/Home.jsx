@@ -3,10 +3,13 @@ import Banner from "../components/Banner/Banner";
 import Card from "../components/Card/Card";
 import Jobs from "./Jobs";
 import Sidebar from "../components/sidebar/Sidebar";
+import Loading from "../components/loader/Loading";
 
 function Home() {
   const [selectedCatagory, setSelectedCatagory] = useState(null);
   const [jobs, setJobs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     fetch("jobs.json")
       .then((res) => res.json())
@@ -69,7 +72,9 @@ function Home() {
   };
 
   const result = filteredData(jobs, selectedCatagory, query);
-
+  setTimeout(() => {
+    setIsLoading(false);
+  }, 3000);
   return (
     <div className="">
       <Banner query={query} handleChange={handleChange} />
@@ -84,7 +89,7 @@ function Home() {
         </div>
 
         <div className="col-span-2 bg-white p-4 rounded shadow">
-          <Jobs result={result} />
+          {isLoading ? <Loading /> : <Jobs result={result} />}
         </div>
 
         {/* right side */}

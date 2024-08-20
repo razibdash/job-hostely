@@ -26,7 +26,7 @@ function Header() {
     },
   ];
   return (
-    <header className="max-w-screen-2xl container mx-auto xl:px-24 px-4 bg-white p-5 sticky top-0 shadow">
+    <header className="max-w-screen-2xl container mx-auto xl:px-24 px-4 bg-white p-5 sticky top-0 shadow-sm">
       <nav className="flex items-center justify-between ">
         <a className="flex items-center gap-2 text-2xl" href="">
           JobPortal
