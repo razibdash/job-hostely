@@ -7,7 +7,7 @@ function Home() {
     setQuery(e.target.value);
   };
   return (
-    <div>
+    <div className="">
       <Banner query={query} handleChange={handleChange} />
     </div>
   );
