@@ -1,3 +1,4 @@
+import JobPostingDate from "./JobPostingDate";
 import Location from "./Location";
 import SalaryBar from "./SalaryBar";
 
@@ -10,6 +11,7 @@ function Sidebar({ handleChangefilter, handleClickFilter }) {
         handleChangefilter={handleChangefilter}
         handleClickFilter={handleClickFilter}
       />
+      <JobPostingDate handleChangefilter={handleChangefilter} />
     </div>
   );
 }
