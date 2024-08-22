@@ -2,9 +2,9 @@ import { FiMapPin, FiSearch } from "react-icons/fi";
 // eslint-disable-next-line react/prop-types
 function Banner({ handleChange, query }) {
   return (
-    <div className="bg-[#F0F8FF] max-w-screen-2xl container mx-auto xl:px-24 px-4 md:py-20 py-14">
+    <div className=" max-w-screen-2xl container mx-auto xl:px-24 px-4 md:py-20 py-14">
       <h1 className="text-5xl font-bold text-slate-600 mb-3">
-        Find your <span className="text-blue-400">new job</span> today
+        Find your <span className="text-[#388697]">new job</span> today
       </h1>
       <p className="text-stone-400 text-lg mb-8 ">
         Thoursand of jobs in the computer,engineering and technology sectors are
@@ -37,7 +37,7 @@ function Banner({ handleChange, query }) {
           </div>
           <button
             type="submit"
-            className="bg-blue-400 text-slate-100 py-2 px-8 md:rounded-s-none rounded"
+            className="bg-[#388697] text-slate-100 py-2 px-8 md:rounded-s-none rounded"
           >
             Search
           </button>

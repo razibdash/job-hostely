@@ -85,7 +85,7 @@
     },
     {
       "id": 1,
-      "companyName": "Linear company",
+      "companyName": "softwarelab",
       "jobTitle": "Software Engineer",
       "companyLogo": "/images/Linear.png",
       "minPrice": "30",
@@ -99,7 +99,7 @@
     },
     {
       "id": 2,
-      "companyName": "Notion",
+      "companyName": "educollabs",
       "jobTitle": "Web Developer",
       "companyLogo": "/images/Notion.png",
       "minPrice": "40",

@@ -26,9 +26,9 @@ function Header() {
     },
   ];
   return (
-    <header className="max-w-screen-2xl container mx-auto xl:px-24 px-4 bg-white p-5 sticky top-0 shadow-sm">
+    <header className="max-w-screen-2xl container text-stone-200 mx-auto xl:px-24 px-4 z-50 bg-white p-5 sticky top-0 shadow-sm">
       <nav className="flex items-center justify-between ">
-        <a className="flex items-center gap-2 text-2xl" href="">
+        <a className="flex items-center  gap-2 text-2xl" href="">
           JobPortal
         </a>
         {/* {nav item for large device} */}
@@ -50,7 +50,7 @@ function Header() {
             Login
           </Link>
           <Link
-            className="py-2 px-5 border rounded bg-blue-400 text-stone-50"
+            className="py-2 px-5 border rounded bg-[#388697] text-stone-50"
             to="/sign-up"
           >
             Sign-up
