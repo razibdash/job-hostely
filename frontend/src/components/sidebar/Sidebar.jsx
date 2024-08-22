@@ -1,7 +1,9 @@
 import JobPostingDate from "./JobPostingDate";
 import Location from "./Location";
 import SalaryBar from "./SalaryBar";
+import WorkExperience from "./WorkExperience";
 
+// eslint-disable-next-line react/prop-types
 function Sidebar({ handleChangefilter, handleClickFilter }) {
   return (
     <div className="space-y-5">
@@ -12,6 +14,7 @@ function Sidebar({ handleChangefilter, handleClickFilter }) {
         handleClickFilter={handleClickFilter}
       />
       <JobPostingDate handleChangefilter={handleChangefilter} />
+      <WorkExperience handleChangefilter={handleChangefilter} />
     </div>
   );
 }

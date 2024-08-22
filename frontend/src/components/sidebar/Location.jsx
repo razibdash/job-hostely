@@ -5,7 +5,7 @@ function Location({ handleChangefilter }) {
     <div>
       <h4 className="text-stone-700 text-lg mb-2">Location</h4>
       <div className="text-stone-500">
-        {/* <label className="sidebar-label-container">
+        <label className="sidebar-label-container">
           <input
             type="radio"
             name="test"
@@ -14,13 +14,13 @@ function Location({ handleChangefilter }) {
             onChange={handleChangefilter}
           />
           <span className="checkmark"></span>All
-        </label> */}
-        <InputField
+        </label>
+        {/* <InputField
           handleChangefilter={handleChangefilter}
           value=""
           title="all"
           name="text"
-        />
+        /> */}
         <InputField
           handleChangefilter={handleChangefilter}
           value="bangladesh"
