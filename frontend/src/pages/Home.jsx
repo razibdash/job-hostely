@@ -5,6 +5,7 @@ import Card from "../components/Card/Card";
 import Jobs from "./Jobs";
 import Sidebar from "../components/sidebar/Sidebar";
 import Loading from "../components/loader/Loading";
+import Newslatter from "../components/Newslatter";
 
 function Home() {
   const [selectedCatagory, setSelectedCatagory] = useState(null);
@@ -109,10 +110,10 @@ function Home() {
     setIsLoading(false);
   }, 3000);
   return (
-    <div className="">
+    <div>
       <Banner query={query} handleChange={handleChange} />
       {/* main content */}
-      <div className=" mt-2 md:grid grid-cols-4 gap-8 lg:px-24 px-4 py-12">
+      <div className=" md:grid grid-cols-4 gap-8 lg:px-24 px-4 py-12">
         {/* left side */}
         <div className="bg-white p-4 rounded shadow">
           <Sidebar
@@ -167,7 +168,9 @@ function Home() {
         </div>
 
         {/* right side */}
-        <div className="bg-white p-4 rounded shadow">right</div>
+        <div className="bg-white p-4 rounded shadow">
+          <Newslatter />
+        </div>
       </div>
     </div>
   );

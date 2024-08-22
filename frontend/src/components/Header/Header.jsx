@@ -53,7 +53,7 @@ function Header() {
             className="py-2 px-5 border rounded bg-[#388697] text-stone-50"
             to="/sign-up"
           >
-            Sign-up
+            Sign Up
           </Link>
         </div>
         {/* mobile menu */}
