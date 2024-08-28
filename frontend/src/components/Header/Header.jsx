@@ -28,8 +28,12 @@ function Header() {
   return (
     <header className="max-w-screen-2xl container text-stone-200 mx-auto xl:px-24 px-4 z-50 bg-white p-5 sticky top-0 shadow-sm">
       <nav className="flex items-center justify-between ">
-        <a className="flex items-center  gap-2 text-2xl" href="">
-          JobPortal
+        <a
+          className="flex items-center font-mono  font-bold  text-2xl"
+          href="/"
+        >
+          Job
+          <span className="text-[#388697] font-serif  font-bold">Hostely</span>
         </a>
         {/* {nav item for large device} */}
         <ul className="hidden md:flex gap-12">
