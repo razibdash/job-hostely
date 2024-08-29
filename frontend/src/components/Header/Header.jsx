@@ -28,13 +28,14 @@ function Header() {
   return (
     <header className="max-w-screen-2xl container text-stone-200 mx-auto xl:px-24 px-4 z-50 bg-white p-5 sticky top-0 shadow-sm">
       <nav className="flex items-center justify-between ">
-        <a
+        <Link
+          to={"/"}
           className="flex items-center font-mono  font-bold  text-2xl"
           href="/"
         >
           Job
           <span className="text-[#388697] font-serif  font-bold">Hostely</span>
-        </a>
+        </Link>
         {/* {nav item for large device} */}
         <ul className="hidden md:flex gap-12">
           {navItems.map(({ path, title }) => (

@@ -178,6 +178,38 @@ function PostJob() {
             </div>
           </div>
 
+          {/* this is 7th row */}
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-8 mt-5">
+            <div className="w-full">
+              <label className="block mb-2 text-lg text-slate-800 font-semibold">
+                Job Descriptions
+              </label>
+              <textarea
+                type="text"
+                rows={5}
+                cols={2}
+                className="w-full   px-2 py-3 rounded focus:outline-none border text-stone-400"
+                placeholder="job description"
+                {...register(" jobDescriptions")}
+              />
+            </div>
+          </div>
+
+          {/* this rows 8th */}
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-8 mt-5">
+            <div className="w-full">
+              <label className="block mb-2 text-lg text-slate-800 font-semibold">
+                Job post bye
+              </label>
+              <input
+                type="text"
+                className="w-full   px-2 py-3 rounded focus:outline-none border text-stone-400"
+                placeholder="post by"
+                {...register("jobPostBy")}
+              />
+            </div>
+          </div>
+
           <button
             className="my-5 bg-[#388697] text-white font-bold px-8 py-2 rounded hover:bg-[#3690a4] "
             type="submit"
