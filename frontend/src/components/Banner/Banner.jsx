@@ -1,6 +1,6 @@
 import { FiMapPin, FiSearch } from "react-icons/fi";
 // eslint-disable-next-line react/prop-types
-function Banner({ handleChange, query }) {
+function Banner({ queryTwo, handleChange, query }) {
   return (
     <div className="bg-slate-50 max-w-screen-2xl container mx-auto xl:px-24 px-4 md:py-20 py-14">
       <h1 className="text-5xl font-bold text-slate-600 mb-3">
@@ -30,8 +30,6 @@ function Banner({ handleChange, query }) {
               name="title"
               placeholder="Location?"
               className="focus:outline-none block flex-1 border-0 bg-transparent py-1.5 pl-8 text-stone-500 placeholder:text-stone-500 focus:right-0 sm:text-sm sm:leading-6"
-              value={query}
-              onChange={handleChange}
             />
             <FiMapPin className="absolute mt-2.5 ml-2 text-slate-500" />
           </div>
