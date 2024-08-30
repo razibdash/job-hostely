@@ -27,4 +27,6 @@ const JobpostSchema=mongoose.Schema({
         required:true
     },
     
-})
+});
+ const jobs=mongoose.model("job",JobpostSchema);
+module.exports=jobs;
