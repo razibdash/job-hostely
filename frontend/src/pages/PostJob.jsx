@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Creatable from "react-select/creatable";
+import axios from "axios";
 function PostJob() {
   const [selectedOption, setSelectedOption] = useState(null);
   const {
@@ -8,8 +9,16 @@ function PostJob() {
     register,
     formState: { errors },
   } = useForm();
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
     values.skills = selectedOption;
+    try {
+      const { data } = await axios
+        .post("http://localhost:5000/api/job-post", values)
+        .then(() => console.log("response"));
+    } catch (error) {
+      console.log(error.message);
+    }
+
     console.log(values);
   };
 
@@ -190,7 +199,7 @@ function PostJob() {
                 cols={2}
                 className="w-full   px-2 py-3 rounded focus:outline-none border text-stone-400"
                 placeholder="job description"
-                {...register(" jobDescriptions")}
+                {...register("jobDescriptions")}
               />
             </div>
           </div>
@@ -199,7 +208,7 @@ function PostJob() {
           <div className="flex flex-col lg:flex-row items-center justify-between gap-8 mt-5">
             <div className="w-full">
               <label className="block mb-2 text-lg text-slate-800 font-semibold">
-                Job post bye
+                Job post by
               </label>
               <input
                 type="text"

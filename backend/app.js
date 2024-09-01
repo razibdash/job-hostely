@@ -11,7 +11,7 @@ app.use(cors());
 connectDB();
 
 
-app.use('/api/jobs',jobRoute);
+app.use('/api/job-post',jobRoute);
 
 
 app.listen(process.env.PORT,()=>{
