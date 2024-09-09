@@ -1,5 +1,6 @@
 const Jobs=require('../Model/JobPostSchema');
 
+//post a jobs 
 const jobPost=async(req,res)=>{
      try {
          const newJobs=new Jobs(req.body);
@@ -11,7 +12,7 @@ const jobPost=async(req,res)=>{
         })
      }
 }
-
+//get all jobs
 const getAllJobs=async(req,res)=>{
     try {
         const data=await Jobs.find({});
@@ -22,5 +23,20 @@ const getAllJobs=async(req,res)=>{
         })
     }
 }
+// get jobs by email
+const getJobsByEmail=async(req,res)=>{
+    try {
+        const findByEmail=req.params.email;
+        const jobs=await Jobs.find({jobPostBy:findByEmail});
+        res.status(200).json(jobs);
+    } catch (error) {
+        res.status(500).json({
+            message:error.message,
+        })   
+    }
+}
 
-module.exports={jobPost,getAllJobs};
+module.exports={
+    jobPost,
+    getAllJobs,
+    getJobsByEmail};

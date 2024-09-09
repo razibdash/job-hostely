@@ -4,20 +4,20 @@ function Card({ data }) {
   const {
     companyName,
     jobTitle,
-    companyLogo,
+    logo,
     minPrice,
     maxPrice,
     salaryType,
     jobLocation,
     experinceLevel,
     employmentType,
-    description,
+    jobDescriptions,
     postingDate,
   } = data;
   return (
     <section className="card hover:shadow-lg transition-all rounded">
       <Link to={"/"} className="flex gap-4 flex-col sm:flex-row items-start">
-        <img src={companyLogo} alt="" />
+        <img src={logo} alt="" />
         <div>
           <h4 className="text-slate-600 mb-1">{companyName}</h4>
           <h3 className="text-lg font-semibold">{jobTitle}</h3>
@@ -39,7 +39,7 @@ function Card({ data }) {
               {postingDate}
             </span>
           </div>
-          <p className="text-base text-stone-400">{description}</p>
+          <p className="text-base text-stone-400">{jobDescriptions}</p>
         </div>
       </Link>
     </section>

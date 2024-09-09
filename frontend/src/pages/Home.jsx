@@ -16,7 +16,7 @@ function Home() {
   const itemPerPage = 6;
 
   useEffect(() => {
-    fetch("jobs.json")
+    fetch("http://localhost:5000/api/all-jobs")
       .then((res) => res.json())
       .then((data) => {
         setIsLoading(false);
@@ -121,7 +121,7 @@ function Home() {
             handleClickFilter={handleClickFilter}
           />
         </div>
-
+        {/* mid section */}
         <div className="col-span-2 bg-white p-4 rounded shadow">
           {isLoading ? (
             <Loading />
