@@ -44,6 +44,7 @@ function PostJob() {
               <input
                 className="w-full  px-2 py-3 rounded focus:outline-none border text-stone-600"
                 type="text"
+                required
                 placeholder="Web developer"
                 {...register("jobTitle")}
               />
@@ -53,6 +54,7 @@ function PostJob() {
                 Company name
               </label>
               <input
+                required
                 className="w-full  px-2 py-3 rounded focus:outline-none border text-stone-600"
                 type="text"
                 placeholder="Collab"

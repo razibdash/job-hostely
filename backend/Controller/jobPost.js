@@ -35,8 +35,25 @@ const getJobsByEmail=async(req,res)=>{
         })   
     }
 }
+//delete a job
+const deleteAjob=async(req,res)=>{
+    try {
+        const id=req.params.id;
+         const filter={_id:id};
+         const result=await Jobs.deleteOne(filter);
+         res.status(200).json({
+            message:"Job post was deleted!",
+         })
+    } catch (error) {
+        res.status(500).json({
+            message:error.message,
+        })   
+    }
+}
 
 module.exports={
     jobPost,
     getAllJobs,
-    getJobsByEmail};
+    getJobsByEmail,
+    deleteAjob
+};

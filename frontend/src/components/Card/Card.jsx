@@ -39,7 +39,9 @@ function Card({ data }) {
               {postingDate}
             </span>
           </div>
-          <p className="text-base text-stone-400">{jobDescriptions}</p>
+          <p className="text-base text-stone-400">
+            {jobDescriptions.slice(0, 50)}
+          </p>
         </div>
       </Link>
     </section>
