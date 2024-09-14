@@ -1,6 +1,6 @@
-import { FiMapPin, FiSearch } from "react-icons/fi";
+import { FiSearch } from "react-icons/fi";
 // eslint-disable-next-line react/prop-types
-function Banner({ queryTwo, handleChange, query }) {
+function Banner({ handleChange, query }) {
   return (
     <div className="bg-slate-50 max-w-screen-2xl container mx-auto xl:px-24 px-4 md:py-20 py-14">
       <h1 className="text-5xl font-bold text-slate-600 mb-3">
