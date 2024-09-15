@@ -128,11 +128,13 @@ function MyJobs() {
                     </th>
                     <td className="px-6 py-4">{job.jobTitle}</td>
                     <td className="px-6 py-4">{job.companyName}</td>
-                    <td className="px-6 py-4">{`${job.minPrice}-${job.maxPrice} `}</td>
+                    <td className="px-6 py-4">{`${job.minPrice}k - ${job.maxPrice}k `}</td>
                     <td className="px-6 py-4">
-                      <button className="bg-[#388697] text-stone-100 py-1 px-3 rounded">
-                        Edit
-                      </button>
+                      <Link to={`/edit-job/${job._id}`}>
+                        <button className="bg-[#388697] text-stone-100 py-1 px-3 rounded">
+                          Edit
+                        </button>
+                      </Link>
                     </td>
                     <td className="px-6 py-4">
                       <button

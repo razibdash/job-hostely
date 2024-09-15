@@ -50,10 +50,43 @@ const deleteAjob=async(req,res)=>{
         })   
     }
 }
+//get a job post by id
+const updateJob=async(req,res)=>{
+    try {
+        const updateId=req.params.id;
+        const jobData=await Jobs.findOne({_id:updateId});
+        res.send(jobData);
 
+    } catch (error) {
+        res.status(500).json({
+            message:error.message,
+        }) 
+    }
+}
+ //update a job post by id
+ const updateAjobPostById=async(req,res)=>{
+    try {
+        const id=req.params.id;
+        const jobdata= req.body;
+        const filter={_id:id}
+        const option={upsert:true}
+        const updateData={
+            $set:{
+                ...jobdata
+            },
+
+        };
+        const result=await Jobs.updateOne(filter,updateData,option);
+        res.status(200).json(result);
+    } catch (error) {
+        
+    }
+ }
 module.exports={
     jobPost,
     getAllJobs,
     getJobsByEmail,
-    deleteAjob
+    deleteAjob,
+    updateJob,
+    updateAjobPostById
 };
