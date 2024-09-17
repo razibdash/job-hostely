@@ -55,6 +55,10 @@ const JobpostSchema=mongoose.Schema({
     jobDescriptions:{
         type:String,
         required:true,
+    },
+    user:{
+        type:mongoose.Types.ObjectId,
+        ref:'User'
     }
     
 });

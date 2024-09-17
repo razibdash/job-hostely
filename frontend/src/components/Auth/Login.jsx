@@ -1,34 +1,84 @@
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { getAuth } from "firebase/auth";
-import app from "../firebase/firebase.config";
+import { useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { BsPersonLock } from "react-icons/bs";
 function Login() {
-  const auth = getAuth();
-  const provider = new GoogleAuthProvider();
-  const handleLogin = () => {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        // The signed-in user info.
-        const user = result.user;
-        // IdP data available using getAdditionalUserInfo(result)
-        // ...
-      })
-      .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
-      });
+  const loginData = {
+    email: "",
+    password: "",
   };
+  const [login, setLogin] = useState(loginData);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setLogin({ ...login, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:3000/api/login", login)
+      .then((result) => {
+        // console.log(result);
+        if (result.data === "Success") {
+          toast("Login Success!");
+        } else {
+          toast("You are not registered to this service");
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
-    <div>
-      <button onClick={handleLogin}>LOgin</button>
+    <div className="flex justify-center items-center ">
+      <div className="fromBox bg-white w-96 p-4 mt-20 border-l-indigo-50  rounded-lg shadow-lg">
+        <ToastContainer />
+        <div className="flex justify-center items-center ">
+          <BsPersonLock fontSize="50px" color="#388697" />
+        </div>
+        <h1 className=" text-center p-2 text-2xl font-bold">
+          Job
+          <span className="text-[#388697] font-serif  font-bold">Hostely</span>
+        </h1>
+
+        <form action="" method="post" onSubmit={handleSubmit}>
+          <div className="flex flex-col">
+            <label className="text-stone-500" htmlFor="email">
+              Email
+            </label>
+            <input
+              className="border mt-1 px-2 rounded outline-none py-2"
+              type="email"
+              name="email"
+              placeholder="enter email"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="flex flex-col mt-2">
+            <label className="text-stone-500" htmlFor="password">
+              password
+            </label>
+            <input
+              className="border mt-1 px-2 rounded outline-none py-2"
+              type="password"
+              name="password"
+              placeholder="enter password"
+              onChange={handleChange}
+            />
+          </div>
+          <div className=" mt-4 flex justify-between items-center">
+            <input
+              className="bg-[#388697] text-stone-100 mt-1 py-1 uppercase cursor-pointer px-2 rounded text-1xl font-semibold hover:bg-[#2d7080] hover:text-stone-50"
+              type="submit"
+              value="sign up"
+            />
+            <Link to="/sign-up" className="text-[#388697] ">
+              create new?
+            </Link>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

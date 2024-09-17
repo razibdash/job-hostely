@@ -21,14 +21,7 @@ const router = createBrowserRouter([
         path: "/post-job",
         element: <PostJob />,
       },
-      {
-        path: "/sign-up",
-        element: <SignUp />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
-      },
+
       {
         path: "/my-job",
         element: <MyJobs />,
@@ -44,6 +37,14 @@ const router = createBrowserRouter([
           fetch(`http://localhost:5000/api/edit-job/${params.id}`),
       },
     ],
+  },
+  {
+    path: "/sign-up",
+    element: <SignUp />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
 ]);
 

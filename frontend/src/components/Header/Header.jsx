@@ -31,7 +31,6 @@ function Header() {
         <Link
           to={"/"}
           className="flex items-center font-mono  font-bold  text-2xl"
-          href="/"
         >
           Job
           <span className="text-[#388697] font-serif  font-bold">Hostely</span>
