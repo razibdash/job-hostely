@@ -28,7 +28,15 @@ function SignUp() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const url = "http://localhost:3000/api/";
+    const formData = new FormData();
+    formData.append("myFile", registration.img, registration.img.name);
+    formData.append("firstName", registration.firstName);
+    formData.append("lastName", registration.lastName);
+    formData.append("email", registration.email);
+    formData.append("phone", registration.phone);
+    formData.append("password", registration.password);
+
+    const url = "http://localhost:5000/api/signup";
     const sendData = async () => {
       await axios
         .post(url, registration)
@@ -119,11 +127,11 @@ function SignUp() {
             />
           </div>
           <div className="flex flex-col">
-            <label className="text-stone-500" htmlFor="password">
+            <label className="text-stone-500" htmlFor="picture">
               Picture
             </label>
             <input
-              className="block w-full text-sm py-2 px-2  border  rounded cursor-pointer   focus:outline-none   "
+              className="block w-full text-stone-500 text-sm py-2 px-2  border  rounded cursor-pointer   focus:outline-none   "
               type="file"
               name="file"
               onChange={handleFile}

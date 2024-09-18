@@ -4,6 +4,7 @@ const cors=require('cors');
 const connectDB = require("./config/db");
 //import job router
 const jobRoute=require('./Router/jobRoute')
+const userRoute=require('./Router/userRoute');
 const app=express();
 dotenv.config()
 app.use(express.json());
@@ -11,6 +12,7 @@ app.use(cors());
 connectDB();
 
 
+app.use('/api',userRoute);
 app.use('/api',jobRoute);
 
 
