@@ -11,7 +11,7 @@ function SignUp() {
     phone: "",
     email: "",
     password: "",
-    picture: "",
+    avatar: "",
   };
   const [registration, setRagistration] = useState(regiData);
   const navigate = useNavigate();
@@ -22,24 +22,28 @@ function SignUp() {
   const handleFile = (e) => {
     setRagistration({
       ...registration,
-      picture: e.target.files[0],
+      avatar: e.target.files[0],
     });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("myFile", registration.img, registration.img.name);
+    formData.append(
+      "myFile",
+      registration.avatar,
+      registration.avatar.filename
+    );
     formData.append("firstName", registration.firstName);
     formData.append("lastName", registration.lastName);
     formData.append("email", registration.email);
     formData.append("phone", registration.phone);
     formData.append("password", registration.password);
-
     const url = "http://localhost:5000/api/signup";
+
     const sendData = async () => {
       await axios
-        .post(url, registration)
+        .post(url, formData)
         .then(() => {
           navigate("/");
         })
@@ -48,8 +52,9 @@ function SignUp() {
         });
     };
     sendData();
+    console.log(formData);
   };
-  console.log(registration);
+
   return (
     <div className="flex justify-center items-center ">
       <div className="fromBox bg-white w-96 p-4 mt-20 border-l-indigo-50  rounded-lg shadow-lg">
@@ -133,7 +138,8 @@ function SignUp() {
             <input
               className="block w-full text-stone-500 text-sm py-2 px-2  border  rounded cursor-pointer   focus:outline-none   "
               type="file"
-              name="file"
+              name="myFile"
+              autoComplete="off"
               onChange={handleFile}
             />
           </div>

@@ -2,11 +2,11 @@ const express=require("express");
 const mongoose=require("mongoose");
 
 const userSchema=mongoose.Schema({
-    fName:{
+    firstName:{
         type:String,
         required:true
     },
-    lName:{
+    lastName:{
         type:String,
         required:true
     },
@@ -18,9 +18,8 @@ const userSchema=mongoose.Schema({
         type:String,
         required:true
     },
-    picture:{
-        type:String,
-        required:true
+    avatar:{
+        type:String,   
     },
     Job:{
         type:mongoose.Types.ObjectId,
