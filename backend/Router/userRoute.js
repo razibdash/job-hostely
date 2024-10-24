@@ -1,12 +1,12 @@
 const express=require('express');
 
-const {signupAuser}  = require('../Controller/userController');
-const avatarUpload = require('../Middleware/users/avatarUpload');
+const {signupAuser, login}  = require('../Controller/userController');
 
 const router=express.Router();
 
 
-router.post('/signup',avatarUpload, signupAuser);
+router.post('/signup',signupAuser);
+router.post('/login',login);
 router.get('/get-user');
 
 

@@ -11,7 +11,6 @@ function SignUp() {
     phone: "",
     email: "",
     password: "",
-    avatar: "",
   };
   const [registration, setRagistration] = useState(regiData);
   const navigate = useNavigate();
@@ -19,40 +18,23 @@ function SignUp() {
     const { name, value } = e.target;
     setRagistration({ ...registration, [name]: value });
   };
-  const handleFile = (e) => {
-    setRagistration({
-      ...registration,
-      avatar: e.target.files[0],
-    });
-  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append(
-      "myFile",
-      registration.avatar,
-      registration.avatar.filename
-    );
-    formData.append("firstName", registration.firstName);
-    formData.append("lastName", registration.lastName);
-    formData.append("email", registration.email);
-    formData.append("phone", registration.phone);
-    formData.append("password", registration.password);
     const url = "http://localhost:5000/api/signup";
 
     const sendData = async () => {
       await axios
-        .post(url, formData)
+        .post(url, registration)
         .then(() => {
-          navigate("/");
+          navigate("/login");
         })
         .catch((err) => {
           toast(err.message);
         });
     };
     sendData();
-    console.log(formData);
   };
 
   return (
@@ -129,18 +111,6 @@ function SignUp() {
               name="password"
               placeholder="enter password"
               onChange={handleChange}
-            />
-          </div>
-          <div className="flex flex-col">
-            <label className="text-stone-500" htmlFor="picture">
-              Picture
-            </label>
-            <input
-              className="block w-full text-stone-500 text-sm py-2 px-2  border  rounded cursor-pointer   focus:outline-none   "
-              type="file"
-              name="myFile"
-              autoComplete="off"
-              onChange={handleFile}
             />
           </div>
           <div className=" mt-4 flex justify-between items-center">
