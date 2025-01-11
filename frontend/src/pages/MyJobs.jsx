@@ -2,20 +2,29 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Loading from "../components/loader/Loading";
+import { toast } from "react-toastify";
 function MyJobs() {
-  const email = "rajib@gmail.com";
   const [jobs, setJobs] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   //set current page
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
-
+  const token = localStorage.getItem("token");
   useEffect(() => {
-    setIsLoading(false);
-    fetch("http://localhost:5000/api/myJobs/rajib")
-      .then((res) => res.json())
-      .then((data) => setJobs(data));
+    axios
+      .get("http://localhost:5000/api/myJobs", {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((res) => {
+        setJobs(res.data.jobs);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   }, [searchText]);
   //pagination
   const indexOfLastItems = currentPage * itemsPerPage;
@@ -40,14 +49,19 @@ function MyJobs() {
       (job) =>
         job.jobTitle.toLowerCase().indexOf(searchText.toLowerCase()) !== -1
     );
-    // console.log(filter);
+
     setJobs(filter);
     setIsLoading(false);
   };
-  const handleDelete = async (id) => {
-    const { data } = await axios
-      .delete(`http://localhost:5000/api/job/${id}`)
-      .then((response) => {
+  const handleDelete = (id) => {
+    axios
+      .delete(`http://localhost:5000/api/job/${id}`, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then(() => {
+        toast("delete successfull");
         setJobs((prevJob) => prevJob.filter((job) => job._id !== id));
       })
       .catch((err) => {
@@ -114,11 +128,9 @@ function MyJobs() {
             </thead>
             <tbody>
               {isLoading ? (
-                <div className="flex justify-center items-center">
-                  <Loading />
-                </div>
+                <Loading />
               ) : (
-                currentJobs.map((job, index) => (
+                jobs.map((job, index) => (
                   <tr key={index} className="bg-white border-b ">
                     <th
                       scope="row"

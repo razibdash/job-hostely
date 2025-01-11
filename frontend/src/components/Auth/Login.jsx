@@ -30,7 +30,7 @@ function Login() {
         localStorage.setItem("token", result.data.token);
         if (result.data.success == true) {
           toast("Login Success!");
-          Navigate("/my-job");
+          Navigate("/");
         } else {
           toast("You are not registered to this service");
         }

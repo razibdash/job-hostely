@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Creatable from "react-select/creatable";
 import axios from "axios";
+import { toast } from "react-toastify";
 function PostJob() {
   const [selectedOption, setSelectedOption] = useState(null);
   const {
@@ -9,17 +10,25 @@ function PostJob() {
     register,
     formState: { errors },
   } = useForm();
-  const onSubmit = async (values) => {
+  const onSubmit = (values) => {
+    const token = localStorage.getItem("token");
     values.skills = selectedOption;
     try {
-      const { data } = await axios
-        .post("http://localhost:5000/api/job-post", values)
-        .then(() => console.log("response"));
+      axios
+        .post("http://localhost:5000/api/job-post", values, {
+          headers: {
+            Authorization: token,
+          },
+        })
+        .then(() => {
+          toast("post is successfull");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } catch (error) {
       console.log(error.message);
     }
-
-    console.log(values);
   };
 
   const options = [
