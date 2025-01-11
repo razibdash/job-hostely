@@ -1,6 +1,6 @@
 const bcrypt=require('bcrypt');
 const User = require('../Model/UserModel');
-const {hashedPwd}=require("../config/utility");
+const {hashedPwd, checkPwd}=require("../config/utility");
 
 
 
@@ -18,20 +18,28 @@ const signupAuser=async(req,res)=>{
        
     }
 }
-
+//login user
 const login=async(req,res)=>{
     try {
         const email=req.body.email;
-        const findUser= await User.findOne({email});
-        if(!findUser) return res.send("something is worng");
-        if(findUser.email){
-            bcrypt.compare(req.body.password,findUser.password,(err,result)=>{
-               if(!err){
-                   res.send(result);
-               }else{
-                 res.send("something is worng!");
-               }
+        const user= await User.findOne({email});
+        if(!user){
+            return res.status(401).json({
+                success:false,
+                message:"user is not found",
             })
+        }
+        if(user){
+          const token= await checkPwd(req.body.password,user.password,{
+            id:user._id,
+            email:user.email,
+           })
+           res.status(201).send({
+            success:true,
+            message:"user is logged in successful",
+            token:"Bearer "+token,
+            user:user,
+         })
         }else{
             res.send('something is worng!');
         }

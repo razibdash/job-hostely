@@ -7,6 +7,7 @@ import SignUp from "../components/Auth/SignUp";
 import Login from "../components/Auth/Login";
 import Salary from "../pages/Salary";
 import UpdateJob from "../pages/UpdateJob";
+import ProtectedRoute from "../context/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -19,12 +20,20 @@ const router = createBrowserRouter([
       },
       {
         path: "/post-job",
-        element: <PostJob />,
+        element: (
+          <ProtectedRoute>
+            <PostJob />
+          </ProtectedRoute>
+        ),
       },
 
       {
         path: "/my-job",
-        element: <MyJobs />,
+        element: (
+          <ProtectedRoute>
+            <MyJobs />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/salary",

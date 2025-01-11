@@ -1,14 +1,16 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BsPersonLock } from "react-icons/bs";
+
 function Login() {
   const loginData = {
     email: "",
     password: "",
   };
+  const Navigate = useNavigate();
   const [login, setLogin] = useState(loginData);
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,17 +19,23 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     axios
-      .post("http://localhost:3000/api/login", login)
+      .post("http://localhost:5000/api/login", login, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
       .then((result) => {
-        // console.log(result);
-        if (result.data === "Success") {
+        localStorage.setItem("token", result.data.token);
+        if (result.data.success == true) {
           toast("Login Success!");
+          Navigate("/my-job");
         } else {
           toast("You are not registered to this service");
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err.message));
   };
 
   return (
@@ -71,7 +79,7 @@ function Login() {
             <input
               className="bg-[#388697] text-stone-100 mt-1 py-1 uppercase cursor-pointer px-2 rounded text-1xl font-semibold hover:bg-[#2d7080] hover:text-stone-50"
               type="submit"
-              value="sign up"
+              value="login"
             />
             <Link to="/sign-up" className="text-[#388697] ">
               create new?

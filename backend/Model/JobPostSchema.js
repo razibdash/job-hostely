@@ -32,8 +32,7 @@ const JobpostSchema=mongoose.Schema({
     },
     postingDate:{
         type:Date,
-        required:true,
-        default:Date.now,
+        default:Date,
     },
     logo:{
         type:String,

@@ -15,7 +15,13 @@ app.use(cookieParser());
 app.use(cors());
 connectDB();
 app.use('/avatar', express.static(path.join(__dirname, '/public/uploads/avatars')));
-
+// Allow requests from specific origin(s)
+// app.use(
+//     cors({
+//       origin: "http://http://localhost:5173", // React app URL
+//       credentials: true, // Include credentials (cookies, authorization headers)
+//     })
+//   );
 app.use('/api',userRoute);
 app.use('/api',jobRoute);
 

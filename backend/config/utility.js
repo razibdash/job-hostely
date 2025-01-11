@@ -5,7 +5,7 @@ const checkPwd = async (l_pwd, user_pwd, value) => {
     try {
         const pwd = await bcrypt.compare(l_pwd, user_pwd);
         if (pwd) {
-            const token = await jwt.sign({ token: value }, process.env.JWT_SECRETS, { expiresIn: process.env.JWT_EXPIRY });
+            const token = await jwt.sign({ token: value }, process.env.SECRET_KEY, { expiresIn: process.env.JWT_EXPIRY });
             return token;
         }
         return pwd;

@@ -19,12 +19,15 @@ const userSchema=mongoose.Schema({
         required:true
     },
 
-    Job:{
-        type:mongoose.Types.ObjectId,
-        ref:"Job"
-    }
+    Jobs:[
+        {
+            type:mongoose.Types.ObjectId,
+            ref:"Job"
+        }
+    ]
+       
+    
 });
 
-const User=mongoose.model('User',userSchema);
 
-module.exports=User;
+module.exports=mongoose.model('User',userSchema);

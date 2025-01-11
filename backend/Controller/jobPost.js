@@ -1,11 +1,33 @@
 const Jobs=require('../Model/JobPostSchema');
-
+const User=require("../Model/UserModel");
+const mongoose=require('mongoose');
 //post a jobs 
 const jobPost=async(req,res)=>{
      try {
-         const newJobs=new Jobs(req.body);
-         await newJobs.save();
-         res.status(200).json(newJobs)
+        const id=req.id;
+         const newJobs=new Jobs({user:id,...req.body,});
+        const jobpost= await newJobs.save();
+
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            throw new Error('Invalid User ID');
+          }
+          if (!mongoose.Types.ObjectId.isValid(jobpost._id)) {
+            throw new Error('Invalid Job Post ID');
+          }
+        const updateUser = await User.updateOne( { _id:id}, { $push:{ Jobs:jobpost._id}})
+        if(updateUser){
+            res.status(201).json({
+                success:true,
+                message:"course is create successfully",
+                jobs:jobpost,
+                user:req.id,
+               
+
+            })
+        }
+
+
+        
      } catch (error) {
         res.status(500).json({
             message:error.message,
@@ -35,6 +57,20 @@ const getJobsByEmail=async(req,res)=>{
         })   
     }
 }
+const getJobByUserId=async(req,res)=>{
+    try {       
+        const jobs=await Jobs.find({user:req.id});
+        res.status(200).json({
+            success:true,
+           message:"data fetch is success",   
+           jobs:jobs,
+        });
+    } catch (error) {
+        res.status(500).json({
+            message:error.message,
+        })   
+    }
+}
 //delete a job
 const deleteAjob=async(req,res)=>{
     try {
@@ -42,6 +78,7 @@ const deleteAjob=async(req,res)=>{
          const filter={_id:id};
          const result=await Jobs.deleteOne(filter);
          res.status(200).json({
+            success:true,
             message:"Job post was deleted!",
          })
     } catch (error) {
@@ -88,5 +125,6 @@ module.exports={
     getJobsByEmail,
     deleteAjob,
     updateJob,
-    updateAjobPostById
+    updateAjobPostById,
+    getJobByUserId
 };
