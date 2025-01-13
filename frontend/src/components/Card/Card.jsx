@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { FiCalendar, FiClock, FiDollarSign, FiMapPin } from "react-icons/fi";
+// eslint-disable-next-line react/prop-types
 function Card({ data }) {
   const {
     companyName,
@@ -16,8 +17,11 @@ function Card({ data }) {
   } = data;
   return (
     <section className="card hover:shadow-lg transition-all rounded">
-      <Link to={"/"} className="flex gap-4 flex-col sm:flex-row items-start">
-        <img src={logo} alt="" />
+      <Link
+        to={`/view-job/${data._id}`}
+        className="flex gap-4 flex-col sm:flex-row items-start"
+      >
+        <img className="w-28 h-14 rounded-lg border-none" src={logo} alt="" />
         <div>
           <h4 className="text-slate-600 mb-1">{companyName}</h4>
           <h3 className="text-lg font-semibold">{jobTitle}</h3>

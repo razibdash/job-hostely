@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import Creatable from "react-select/creatable";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 function PostJob() {
   const [selectedOption, setSelectedOption] = useState(null);
   const {
@@ -10,6 +11,7 @@ function PostJob() {
     register,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate();
   const onSubmit = (values) => {
     const token = localStorage.getItem("token");
     values.skills = selectedOption;
@@ -22,6 +24,7 @@ function PostJob() {
         })
         .then(() => {
           toast("post is successfull");
+          navigate("/my-job");
         })
         .catch((err) => {
           console.log(err);

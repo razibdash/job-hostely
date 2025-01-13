@@ -29,10 +29,10 @@ function UpdateJob() {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
-  const onSubmit = async (values) => {
+  const onSubmit = (values) => {
     values.skills = selectedOption;
     try {
-      const { data } = await axios
+      axios
         .patch(`http://localhost:5000/api/update-job/${id}`, values)
         .then(() => navigate("/my-job"));
     } catch (error) {

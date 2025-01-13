@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Home from "../pages/Home";
@@ -8,6 +9,7 @@ import Login from "../components/Auth/Login";
 import Salary from "../pages/Salary";
 import UpdateJob from "../pages/UpdateJob";
 import ProtectedRoute from "../context/ProtectedRoute";
+import ViewJob from "../components/ViewJob";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +37,12 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+
+      {
+        path: "view-job/:id",
+        element: <ViewJob />,
+      },
+
       {
         path: "/salary",
         element: <Salary />,

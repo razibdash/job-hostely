@@ -128,7 +128,9 @@ function MyJobs() {
             </thead>
             <tbody>
               {isLoading ? (
-                <Loading />
+                <div className="relative top-0 left-[350%]">
+                  <Loading />
+                </div>
               ) : (
                 jobs.map((job, index) => (
                   <tr key={index} className="bg-white border-b ">

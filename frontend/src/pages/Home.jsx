@@ -124,7 +124,9 @@ function Home() {
         {/* mid section */}
         <div className="col-span-2 bg-white p-4 rounded shadow">
           {isLoading ? (
-            <Loading />
+            <div className="relative top-0 left-72">
+              <Loading />
+            </div>
           ) : result.length > 0 ? (
             <Jobs result={result} />
           ) : (
