@@ -11,11 +11,12 @@ function MyJobs() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
   const token = localStorage.getItem("token");
+  console.log(token);
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/myJobs", {
         headers: {
-          Authorization: token,
+          Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => {

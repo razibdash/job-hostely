@@ -1,6 +1,6 @@
 const jwt=require("jsonwebtoken")
 const CheckLogin =  (req, res, next) => {
-    const header = req.headers.authorization;
+    const header = req.headers.authorization.split(' ')[1];
    
     if (!header) {
         return res.status(500).send({
